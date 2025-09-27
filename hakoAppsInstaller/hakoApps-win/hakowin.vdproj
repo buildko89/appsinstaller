@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:hakowin"
+"ProjectName" = "8:hakoApps-win"
 "LanguageId" = "3:1041"
 "CodePage" = "3:932"
 "UILanguageId" = "3:1041"
@@ -121,7 +121,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_6E9CF7FE_A296_4F0F_81E1_668F2231ACED"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][ProductName]\""
+            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][Manufacturer]\\[ProductName]\" /hakoconfig=[HAKOCONFIG]"
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_DAE1D6B00ABA49008B69E705D9CAE111"
             {
@@ -135,7 +135,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_5EFD6153_3677_4F81_A8E6_4658A517D171"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][ProductName]\""
+            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][Manufacturer]\\[ProductName]\" /hakoconfig=[HAKOCONFIG]"
             }
         }
         "DefaultFeature"
@@ -199,7 +199,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_4AD0EE080F1D46748E9BCBC654561C00"
             {
-            "DefaultLocation" = "8:[PersonalFolder]"
+            "DefaultLocation" = "8:[PersonalFolder]\\hakowork\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -246,7 +246,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:hakowin"
+        "ProductName" = "8:hakoApps-win"
         "ProductCode" = "8:{9C9FC562-52DB-453A-925F-8657AB4FE399}"
         "PackageCode" = "8:{7EF7CEFC-867D-4011-8441-B8D722D6B199}"
         "UpgradeCode" = "8:{06CA441B-B02C-4493-B102-CB658E481846}"
@@ -259,7 +259,7 @@
         "Manufacturer" = "8:hakoniwa lab community."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:hakowin drone application installer."
+        "Title" = "8:hakowin drone application installer"
         "Subject" = "8:"
         "ARPCONTACT" = "8:hakoniwa lab community."
         "Keywords" = "8:"
