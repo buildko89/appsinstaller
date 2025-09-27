@@ -15,18 +15,18 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_AAA9F2DBF5B01833024126F91EB2F6FF"
+        "OwnerKey" = "8:_CA0AAA2FDB624F688AD394E46B9E4D4E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CA0AAA2FDB624F688AD394E46B9E4D4E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D6B1E26B823E9E644BB2330F15C1DC2B"
-        "OwnerKey" = "8:_CA0AAA2FDB624F688AD394E46B9E4D4E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CA0AAA2FDB624F688AD394E46B9E4D4E"
         "MsmSig" = "8:_UNDEFINED"
@@ -34,7 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D6B1E26B823E9E644BB2330F15C1DC2B"
+        "OwnerKey" = "8:_AAA9F2DBF5B01833024126F91EB2F6FF"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -96,10 +96,10 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.8"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    "Name" = "8:Microsoft .NET Framework 4.8 (x86 および x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.8"
                     }
                 }
             }
@@ -121,7 +121,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_6E9CF7FE_A296_4F0F_81E1_668F2231ACED"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][Manufacturer]\\[ProductName]\" /hakoconfig=[HAKOCONFIG]"
+            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][ProductName]\""
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_DAE1D6B00ABA49008B69E705D9CAE111"
             {
@@ -135,7 +135,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_5EFD6153_3677_4F81_A8E6_4658A517D171"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][Manufacturer]\\[ProductName]\" /hakoconfig=[HAKOCONFIG]"
+            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][ProductName]\""
             }
         }
         "DefaultFeature"
@@ -152,7 +152,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.7.2"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.8"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=863262"
                 }
@@ -160,14 +160,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D6B1E26B823E9E644BB2330F15C1DC2B"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AAA9F2DBF5B01833024126F91EB2F6FF"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_D6B1E26B823E9E644BB2330F15C1DC2B"
+                    "_AAA9F2DBF5B01833024126F91EB2F6FF"
                     {
                     "Name" = "8:System.Net.Http.dll"
                     "Attributes" = "3:512"
@@ -199,7 +199,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_4AD0EE080F1D46748E9BCBC654561C00"
             {
-            "DefaultLocation" = "8:[PersonalFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[PersonalFolder]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -229,17 +229,6 @@
             "Property" = "8:DesktopFolder"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_989BD643F81D44B78B1FEB727E3982FE"
-                    {
-                    "Name" = "8:hakowin"
-                    "AlwaysCreate" = "11:FALSE"
-                    "Condition" = "8:"
-                    "Transitive" = "11:FALSE"
-                    "Property" = "8:_8CD0E99019EC4A1A82A719F94E7E894C"
-                        "Folders"
-                        {
-                        }
-                    }
                 }
             }
         }
@@ -267,12 +256,12 @@
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.2"
-        "Manufacturer" = "8:hakoniwa"
+        "Manufacturer" = "8:hakoniwa lab community."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:hakowin drone Installer"
+        "Title" = "8:hakowin drone application installer."
         "Subject" = "8:"
-        "ARPCONTACT" = "8:hakoniwa drone pj"
+        "ARPCONTACT" = "8:hakoniwa lab community."
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -379,132 +368,6 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0E102900CEAD43B589DA84AB94612C5C"
-            {
-            "Name" = "8:run-PX4Controlのショートカット"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_989BD643F81D44B78B1FEB727E3982FE"
-            "WorkingFolder" = "8:"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1F6BD4C76DA34ED79DC493131B4D69C2"
-            {
-            "Name" = "8:run-rcのショートカット"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_989BD643F81D44B78B1FEB727E3982FE"
-            "WorkingFolder" = "8:"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_29CC4E3CC6CA47CE8C0338AA287EBC20"
-            {
-            "Name" = "8:run-rc-customのショートカット"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_989BD643F81D44B78B1FEB727E3982FE"
-            "WorkingFolder" = "8:"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4CEFCEC9EC0145EE993F0E7165971524"
-            {
-            "Name" = "8:drone_modelのショートカット"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_989BD643F81D44B78B1FEB727E3982FE"
-            "WorkingFolder" = "8:"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_542023CBF19640E3ADD8F38135A413FA"
-            {
-            "Name" = "8:run-RadioControlのショートカット"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_989BD643F81D44B78B1FEB727E3982FE"
-            "WorkingFolder" = "8:"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_59C9B101C12641EAB0EEC185CCF2881C"
-            {
-            "Name" = "8:run-replayのショートカット"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_989BD643F81D44B78B1FEB727E3982FE"
-            "WorkingFolder" = "8:"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9C8BD3B3724F4CB6B23AAF969C49D5A0"
-            {
-            "Name" = "8:run-sampleのショートカット"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_989BD643F81D44B78B1FEB727E3982FE"
-            "WorkingFolder" = "8:"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E259B6DE16D741D78C02674D1C6199D3"
-            {
-            "Name" = "8:run-FlightControlのショートカット"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_989BD643F81D44B78B1FEB727E3982FE"
-            "WorkingFolder" = "8:"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FD3709FA387646618CCE4AB24E73C73D"
-            {
-            "Name" = "8:run-cameraのショートカット"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_989BD643F81D44B78B1FEB727E3982FE"
-            "WorkingFolder" = "8:"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
         }
         "UserInterface"
         {
