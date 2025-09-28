@@ -15,18 +15,18 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_AAA9F2DBF5B01833024126F91EB2F6FF"
-        "OwnerKey" = "8:_CA0AAA2FDB624F688AD394E46B9E4D4E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_CA0AAA2FDB624F688AD394E46B9E4D4E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_D6B1E26B823E9E644BB2330F15C1DC2B"
+        "OwnerKey" = "8:_CA0AAA2FDB624F688AD394E46B9E4D4E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CA0AAA2FDB624F688AD394E46B9E4D4E"
         "MsmSig" = "8:_UNDEFINED"
@@ -34,7 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AAA9F2DBF5B01833024126F91EB2F6FF"
+        "OwnerKey" = "8:_D6B1E26B823E9E644BB2330F15C1DC2B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -121,7 +121,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_6E9CF7FE_A296_4F0F_81E1_668F2231ACED"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][Manufacturer]\\[ProductName]\" /hakoconfig=[HAKOCONFIG]"
+            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][ProductName]\""
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_DAE1D6B00ABA49008B69E705D9CAE111"
             {
@@ -135,7 +135,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_5EFD6153_3677_4F81_A8E6_4658A517D171"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][Manufacturer]\\[ProductName]\" /hakoconfig=[HAKOCONFIG]"
+            "CustomActionData" = "8:/InstallPath=\"[PersonalFolder][ProductName]\""
             }
         }
         "DefaultFeature"
@@ -160,14 +160,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AAA9F2DBF5B01833024126F91EB2F6FF"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D6B1E26B823E9E644BB2330F15C1DC2B"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_AAA9F2DBF5B01833024126F91EB2F6FF"
+                    "_D6B1E26B823E9E644BB2330F15C1DC2B"
                     {
                     "Name" = "8:System.Net.Http.dll"
                     "Attributes" = "3:512"
@@ -199,7 +199,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_4AD0EE080F1D46748E9BCBC654561C00"
             {
-            "DefaultLocation" = "8:[PersonalFolder]\\hakowork\\[ProductName]"
+            "DefaultLocation" = "8:[PersonalFolder]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -532,158 +532,6 @@
                             "Setting" = "3:1"
                             "Value" = "8:#1203"
                             "DefaultValue" = "8:#1203"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_D86EC91E4B364F979FDCF0663D9BAB34"
-                    {
-                    "Sequence" = "3:300"
-                    "DisplayName" = "8:オプション ボタン   (3 ボタン)"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdCustom3ButtonDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "BannerText"
-                            {
-                            "Name" = "8:BannerText"
-                            "DisplayName" = "8:#1014"
-                            "Description" = "8:#1114"
-                            "Type" = "3:3"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:2"
-                            "Value" = "8:hakoniwa drone config file"
-                            "DefaultValue" = "8:#1214"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "BodyText"
-                            {
-                            "Name" = "8:BodyText"
-                            "DisplayName" = "8:#1015"
-                            "Description" = "8:#1115"
-                            "Type" = "3:3"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:2"
-                            "Value" = "8:Select hakoniwa drone configuration"
-                            "DefaultValue" = "8:#1215"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "Button1Label"
-                            {
-                            "Name" = "8:Button1Label"
-                            "DisplayName" = "8:#1022"
-                            "Description" = "8:#1122"
-                            "Type" = "3:3"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:2"
-                            "Value" = "8:PX4 config"
-                            "DefaultValue" = "8:#1222"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "Button1Value"
-                            {
-                            "Name" = "8:Button1Value"
-                            "DisplayName" = "8:#1018"
-                            "Description" = "8:#1118"
-                            "Type" = "3:3"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:1"
-                            "DefaultValue" = "8:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "Button2Label"
-                            {
-                            "Name" = "8:Button2Label"
-                            "DisplayName" = "8:#1023"
-                            "Description" = "8:#1123"
-                            "Type" = "3:3"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:2"
-                            "Value" = "8:Radio Control config"
-                            "DefaultValue" = "8:#1223"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "Button2Value"
-                            {
-                            "Name" = "8:Button2Value"
-                            "DisplayName" = "8:#1019"
-                            "Description" = "8:#1119"
-                            "Type" = "3:3"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:2"
-                            "DefaultValue" = "8:2"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "Button3Label"
-                            {
-                            "Name" = "8:Button3Label"
-                            "DisplayName" = "8:#1024"
-                            "Description" = "8:#1124"
-                            "Type" = "3:3"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:2"
-                            "Value" = "8:Flight Control config"
-                            "DefaultValue" = "8:#1224"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "Button3Value"
-                            {
-                            "Name" = "8:Button3Value"
-                            "DisplayName" = "8:#1020"
-                            "Description" = "8:#1120"
-                            "Type" = "3:3"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:3"
-                            "DefaultValue" = "8:3"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "ButtonProperty"
-                            {
-                            "Name" = "8:ButtonProperty"
-                            "DisplayName" = "8:#1017"
-                            "Description" = "8:#1117"
-                            "Type" = "3:14"
-                            "ContextData" = "8:Public"
-                            "Attributes" = "3:2"
-                            "Setting" = "3:2"
-                            "Value" = "8:HAKOCONFIG"
-                            "DefaultValue" = "8:BUTTON3"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "DefaultValue"
-                            {
-                            "Name" = "8:DefaultValue"
-                            "DisplayName" = "8:#1016"
-                            "Description" = "8:#1116"
-                            "Type" = "3:3"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:2"
-                            "Value" = "8:2"
-                            "DefaultValue" = "8:1"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
