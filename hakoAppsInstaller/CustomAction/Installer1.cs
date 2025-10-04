@@ -1,13 +1,15 @@
+using IWshRuntimeLibrary;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration.Install;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using IWshRuntimeLibrary;
+using System.Windows.Forms;
 
 namespace CustomAction
 {
@@ -46,46 +48,40 @@ namespace CustomAction
             string pythonPath;
 
             pythonPath = System.Environment.GetEnvironmentVariable("PYTHONPATH", System.EnvironmentVariableTarget.User);
-            string hakopypath = installPath + @"\hakoSim\bin\drone_api\rc;";
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            SetUserEnvironmentPathVariable("PYTHONPATH", hakopypath);
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(pythonPath);
-#endif
-            pythonPath = System.Environment.GetEnvironmentVariable("PYTHONPATH", System.EnvironmentVariableTarget.User);
-            hakopypath = installPath + @"\hakoSim\bin\drone_api\pymavlink;";
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            SetUserEnvironmentPathVariable("PYTHONPATH", hakopypath);
+
+            string[] subPaths = new[]
+            {
+              @"\hakoSim\bin\drone_api\rc;",
+              @"\hakoSim\bin\drone_api\pymavlink;",
+              @"\hakoSim\bin\drone_api\libs;",
+              @"\hakoSim\bin\drone_api\mavsdk;"
+            };
+
+            foreach (string subPath in subPaths)
+            {
+                string fullPath = installPath + subPath;
 
 #if DEBUG
-            System.Windows.Forms.MessageBox.Show(pythonPath);
+        MessageBox.Show($"追加するPYTHONPATH: {fullPath}");
 #endif
-            pythonPath = System.Environment.GetEnvironmentVariable("PYTHONPATH", System.EnvironmentVariableTarget.User);
-            hakopypath = installPath + @"\hakoSim\bin\drone_api\libs;";
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            SetUserEnvironmentPathVariable("PYTHONPATH", hakopypath);
-
-            pythonPath = System.Environment.GetEnvironmentVariable("PYTHONPATH", System.EnvironmentVariableTarget.User);
-            hakopypath = installPath + @"\hakoSim\bin\drone_api\mavsdk;";
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            SetUserEnvironmentPathVariable("PYTHONPATH", hakopypath);
-
-            installPath = this.Context.Parameters["InstallPath"];
+                SetUserEnvironmentPathVariable("PYTHONPATH", fullPath);
 
 #if DEBUG
-            System.Windows.Forms.MessageBox.Show(installPath);
+        string updated = Environment.GetEnvironmentVariable("PYTHONPATH", EnvironmentVariableTarget.User);
+        MessageBox.Show($"更新後PYTHONPATH: {updated}");
+#endif
+            }
+
+#if DEBUG
+                MessageBox.Show($"InstallPath: {installPath}");
 #endif
 
 
-            string iniPath = System.IO.Path.Combine(installPath, @"hakoWinAppsAPI\hakoapi.ini");
+
+
+
+        // iniファイルの更新
+        string iniPath = System.IO.Path.Combine(installPath, @"hakoWinAppsAPI\hakoapi.ini");
 #if DEBUG
             System.Windows.Forms.MessageBox.Show(iniPath);
 #endif
@@ -158,110 +154,94 @@ namespace CustomAction
     //    System.Windows.Forms.MessageBox.Show(“Commit”);
     //}
 
-    //public override void Rollback(System.Collections.IDictionary savedState)
-    //{
-    //    //失敗時のロールバック動作
-    //    base.Rollback(savedState);
-    //    System.Windows.Forms.MessageBox.Show(“Rollback”);
-    //}
+    // アンインストール時のクリーンアップ処理をまとめたクラス
+    public static class hakoAppsCleanup
+    {
+      public static void RemovePaths(string installPath)
+      {
+        // PATH から削除
+        string currentPath = Environment.GetEnvironmentVariable("path", EnvironmentVariableTarget.User);
+        string pathToRemove = installPath + @"\hakoSim\bin;";
+        currentPath = currentPath?.Replace(pathToRemove, "");
+        Environment.SetEnvironmentVariable("path", currentPath, EnvironmentVariableTarget.User);
+
+#if DEBUG
+        MessageBox.Show($"PATH削除: {pathToRemove}\n結果: {currentPath}");
+#endif
+
+        // PYTHONPATH から複数パスを削除
+        string[] pythonSubPaths = new[]
+        {
+            @"\hakoSim\bin\drone_api\rc;",
+            @"\hakoSim\bin\drone_api\pymavlink;",
+            @"\hakoSim\bin\drone_api\libs;",
+            @"\hakoSim\bin\drone_api\mavsdk;"
+        };
+
+        string pythonPath = Environment.GetEnvironmentVariable("PYTHONPATH", EnvironmentVariableTarget.User);
+
+        foreach (string subPath in pythonSubPaths)
+        {
+          string fullPath = installPath + subPath;
+          pythonPath = pythonPath?.Replace(fullPath, "");
+
+#if DEBUG
+          MessageBox.Show($"PYTHONPATH削除: {fullPath}");
+#endif
+        }
+
+        Environment.SetEnvironmentVariable("PYTHONPATH", pythonPath, EnvironmentVariableTarget.User);
+
+#if DEBUG
+        MessageBox.Show($"PYTHONPATH結果: {pythonPath}");
+#endif
+      }
+
+      public static void RemoveShortcut()
+      {
+        string desktop = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+        string shortcutPath = Path.Combine(desktop, "hakoApps-win", "インストールフォルダを開く.lnk");
+
+        if (System.IO.File.Exists(shortcutPath))
+        {
+          try
+          {
+            System.IO.File.Delete(shortcutPath);
+          }
+          catch (Exception ex)
+          {
+            Debug.WriteLine("ショートカット削除失敗: " + ex.Message);
+          }
+        }
+      }
+
+      // 総合的なクリーンアップメソッド
+      public static void PerformCleanup(string installPath)
+      {
+        RemovePaths(installPath);
+        RemoveShortcut();
+      }
+    }
+
+    public override void Rollback(System.Collections.IDictionary savedState)
+    {
+        //失敗時のロールバック動作
+        base.Rollback(savedState);
+
+        // 環境変数、ショートカットのクリーンアップ
+        string installPath = this.Context.Parameters["InstallPath"];
+        hakoAppsCleanup.PerformCleanup(installPath);
+    }
 
     public override void Uninstall(System.Collections.IDictionary savedState)
-        {
-            //Un-install動作
-            base.Uninstall(savedState);
-
-            
-            // 環境変数PATHを編集
-            string currentPath;
-            currentPath = System.Environment.GetEnvironmentVariable("path", System.EnvironmentVariableTarget.User);
-            string installPath = this.Context.Parameters["InstallPath"];
-            string path = installPath + @"\hakoSim\bin;";
-            currentPath = currentPath.Replace(path, "");
-            
-            // 環境変数PATHから削除する
-            System.Environment.SetEnvironmentVariable("path", currentPath, System.EnvironmentVariableTarget.User);
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(currentPath);
-            System.Windows.Forms.MessageBox.Show(path);
-#endif
-
-            // PYTHONPATHから箱庭関連を消す
-            string pythonPath = System.Environment.GetEnvironmentVariable("PYTHONPATH", System.EnvironmentVariableTarget.User);
-            string hakopypath = installPath + @"\hakoSim\bin\drone_api\rc;";
-            pythonPath = pythonPath.Replace(hakopypath, "");
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            // PYTHONPATHから箱庭関連を削除
-            System.Environment.SetEnvironmentVariable("PYTHONPATH", pythonPath, System.EnvironmentVariableTarget.User);
-
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(pythonPath);
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            // PYTHONPATHから箱庭関連を消す
-            pythonPath = System.Environment.GetEnvironmentVariable("PYTHONPATH", System.EnvironmentVariableTarget.User);
-            hakopypath = installPath + @"\hakoSim\bin\drone_api\pymavlink;";
-            pythonPath = pythonPath.Replace(hakopypath, "");
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            // PYTHONPATHから箱庭関連を削除
-            System.Environment.SetEnvironmentVariable("PYTHONPATH", pythonPath, System.EnvironmentVariableTarget.User);
-
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(pythonPath);
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            // PYTHONPATHから箱庭関連を消す
-            pythonPath = System.Environment.GetEnvironmentVariable("PYTHONPATH", System.EnvironmentVariableTarget.User);
-            hakopypath = installPath + @"\hakoSim\bin\drone_api\libs;";
-            pythonPath = pythonPath.Replace(hakopypath, "");
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            // PYTHONPATHから箱庭関連を削除
-            System.Environment.SetEnvironmentVariable("PYTHONPATH", pythonPath, System.EnvironmentVariableTarget.User);
-
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(pythonPath);
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            // PYTHONPATHから箱庭関連を消す
-            pythonPath = System.Environment.GetEnvironmentVariable("PYTHONPATH", System.EnvironmentVariableTarget.User);
-            hakopypath = installPath + @"\hakoSim\bin\drone_api\mavsdk;";
-            pythonPath = pythonPath.Replace(hakopypath, "");
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            // PYTHONPATHから箱庭関連を削除
-            System.Environment.SetEnvironmentVariable("PYTHONPATH", pythonPath, System.EnvironmentVariableTarget.User);
-
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(pythonPath);
-            System.Windows.Forms.MessageBox.Show(hakopypath);
-#endif
-            // デスクトップのパス
-            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-
-            // hakoApps-win フォルダ内のショートカットのパス
-            string shortcutPath = Path.Combine(desktop, "hakoApps-win", "インストールフォルダを開く.lnk");
-
-            // ショートカットが存在すれば削除
-            if (System.IO.File.Exists(shortcutPath))
-            {
-              try
-              {
-                System.IO.File.Delete(shortcutPath);
-              }
-              catch (Exception ex)
-              {
-                // ログ出力など必要に応じて追加可能
-                System.Diagnostics.Debug.WriteLine("ショートカット削除失敗: " + ex.Message);
-              }
-            }
+    {
+        //Un-install動作
+        base.Uninstall(savedState);
 
 
+        // 環境変数、ショートカットのクリーンアップ
+        string installPath = this.Context.Parameters["InstallPath"];
+        hakoAppsCleanup.PerformCleanup(installPath);
     }
   }
 }
